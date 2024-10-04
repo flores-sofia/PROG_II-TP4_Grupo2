@@ -17,6 +17,8 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
 
+import java.sql.SQLException;
+
 public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout1;
     private ViewPager2 viewPager2;
@@ -84,4 +86,6 @@ public class MainActivity extends AppCompatActivity {
             return 3;
         }
     }
+
+
 }
