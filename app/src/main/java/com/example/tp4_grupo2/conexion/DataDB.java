@@ -6,5 +6,4 @@ public class DataDB {
     public static String user = "sql10734361";
     public static String pass = "IAzwgfvyXN";
 
-
 }
