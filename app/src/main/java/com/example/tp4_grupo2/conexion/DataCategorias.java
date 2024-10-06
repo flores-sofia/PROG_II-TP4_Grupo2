@@ -40,7 +40,7 @@ public class DataCategorias{
                 while (rs.next()) {
                     Categoria categoria = new Categoria();
                     categoria.setId(rs.getInt("id"));
-                    categoria.setDescripcion(rs.getString("descripcion")); // Asegúrate de usar el nombre correcto
+                    categoria.setDescripcion(rs.getString("descripcion"));
                     listaCategorias.add(categoria);
                 }
                 rs.close();
@@ -50,7 +50,6 @@ public class DataCategorias{
                 e.printStackTrace();
             }
 
-            // Actualiza la UI en el hilo principal
             new android.os.Handler(android.os.Looper.getMainLooper()).post(() -> {
                 CategoriaAdapter adapter = new CategoriaAdapter(context, listaCategorias);
                 spinnerCategoria.setAdapter(adapter);
@@ -71,7 +70,7 @@ public class DataCategorias{
                 while (rs.next()) {
                     Categoria categoria = new Categoria();
                     categoria.setId(rs.getInt("id"));
-                    categoria.setDescripcion(rs.getString("descripcion")); // Asegúrate de usar el nombre correcto
+                    categoria.setDescripcion(rs.getString("descripcion"));
                     listaCategorias.add(categoria);
                 }
                 rs.close();
@@ -81,7 +80,6 @@ public class DataCategorias{
                 e.printStackTrace();
             }
 
-            // Actualiza la UI en el hilo principal
             new android.os.Handler(android.os.Looper.getMainLooper()).post(() -> {
                 CategoriaAdapter adapter = new CategoriaAdapter(context, listaCategorias);
                 spinnerCategoria.setAdapter(adapter);

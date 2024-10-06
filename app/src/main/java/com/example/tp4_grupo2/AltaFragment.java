@@ -13,7 +13,6 @@ import android.widget.Toast;
 import com.example.tp4_grupo2.Entidades.Categoria;
 import com.example.tp4_grupo2.conexion.DataArticulo;
 import com.example.tp4_grupo2.conexion.DataCategorias;
-import com.example.tp4_grupo2.conexion.DataDB;
 
 public class AltaFragment extends Fragment {
 

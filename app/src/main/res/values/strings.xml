@@ -2,4 +2,14 @@
     <string name="app_name">TP4_GRUPO2</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="modificar">MODIFICAR</string>
+    <string name="categoria">Categoría</string>
+    <string name="stock">Stock</string>
+    <string name="nombre_producto">Nombre Producto</string>
+    <string name="buscar">BUSCAR</string>
+    <string name="id">ID</string>
+    <string name="agregar">AGREGAR</string>
+    <string name="alta">Alta</string>
+    <string name="modificacion">Modificacion</string>
+    <string name="listado">Listado</string>
 </resources>

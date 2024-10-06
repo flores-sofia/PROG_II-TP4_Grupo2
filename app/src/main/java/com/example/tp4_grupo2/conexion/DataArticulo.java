@@ -1,15 +1,11 @@
 package com.example.tp4_grupo2.conexion;
 
 import android.content.Context;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.tp4_grupo2.Entidades.Articulo;
-import com.example.tp4_grupo2.Entidades.Categoria;
-import com.example.tp4_grupo2.ModificacionFragment;
-import com.example.tp4_grupo2.R;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -35,6 +31,9 @@ public class DataArticulo {
     private static Spinner spinnerCategoria;
     private static Articulo articuloModificar=new Articulo();
     private Context context;
+
+    //Para Listar
+    private static ArrayList<Articulo> listaArticulos = new ArrayList<Articulo>();
 
     //Constructor para actualizar controles Modificar
 
@@ -141,8 +140,6 @@ public class DataArticulo {
         return existe;
     }
 
-
-
     public void obtenerArticulo(Context context,int id) {
 
             ExecutorService executor = Executors.newSingleThreadExecutor();
@@ -167,7 +164,6 @@ public class DataArticulo {
                     st.close();
                     con.close();
 
-                    // Actualiza la UI en el hilo principal para errores
                     if(c==0){
                         new android.os.Handler(android.os.Looper.getMainLooper()).post(() -> {
                             Toast.makeText(context, "No existe Articulo con el ID ingresado", Toast.LENGTH_SHORT).show();
@@ -203,7 +199,6 @@ public class DataArticulo {
 
                 } catch (Exception e) {
                     e.printStackTrace();
-                    // Actualiza la UI en el hilo principal para errores
                     new android.os.Handler(android.os.Looper.getMainLooper()).post(() -> {
                         Toast.makeText(context, "Error al obtener el artículo: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                         txtNombreArticulo.setText("");
@@ -216,6 +211,37 @@ public class DataArticulo {
             });
 
         return;
+    }
+
+    public void obtenerArticulos() {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.execute(() -> {
+            ArrayList<Articulo> listaArticulos= new ArrayList<>();
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
+                Statement st = con.createStatement();
+                ResultSet rs = st.executeQuery("SELECT * FROM articulos");
+
+                while (rs.next()) {
+                    Articulo articulo = new Articulo();
+                    articulo.setId(rs.getInt("id"));
+                    articulo.setNombre(rs.getString("nombre"));
+                    articulo.setIdCategoria(rs.getInt("stock"));
+                    articulo.setIdCategoria(rs.getInt("idCategoria"));
+                    listaArticulos.add(articulo);
+                }
+                rs.close();
+                st.close();
+                con.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            new android.os.Handler(android.os.Looper.getMainLooper()).post(() -> {
+
+            });
+        });
     }
 
 

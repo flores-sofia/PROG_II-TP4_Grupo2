@@ -12,7 +12,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.tp4_grupo2.Entidades.Articulo;
 import com.example.tp4_grupo2.Entidades.Categoria;
 import com.example.tp4_grupo2.conexion.DataArticulo;
 

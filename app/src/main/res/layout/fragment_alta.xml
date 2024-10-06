@@ -11,55 +11,55 @@
         android:id="@+id/textViewID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ID"
+        android:text="@string/id"
         android:textSize="16sp" />
 
     <EditText
         android:id="@+id/editTextID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint=""
+        android:autofillHints=""
         android:inputType="number"
         android:minHeight="48dp"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="LabelFor,SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/textViewNombreProducto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nombre Producto"
+        android:text="@string/nombre_producto"
         android:textSize="16sp" />
 
     <EditText
         android:id="@+id/editTextNombreProducto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint=""
+        android:autofillHints=""
         android:inputType="text"
         android:minHeight="48dp"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="LabelFor,SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/textViewStock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Stock"
+        android:text="@string/stock"
         android:textSize="16sp" />
 
     <EditText
         android:id="@+id/editTextStock"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint=""
+        android:autofillHints=""
         android:inputType="number"
         android:minHeight="48dp"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="LabelFor,SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/textViewCategoria"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Categoría"
+        android:text="@string/categoria"
         android:textSize="16sp" />
 
     <Spinner
@@ -72,7 +72,7 @@
         android:id="@+id/btnAgregar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="AGREGAR"
+        android:text="@string/agregar"
         android:layout_gravity="center"
         android:padding="8dp"
         android:textSize="18sp" />

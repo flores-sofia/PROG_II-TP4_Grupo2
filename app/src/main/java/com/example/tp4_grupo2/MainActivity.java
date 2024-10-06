@@ -1,7 +1,6 @@
 package com.example.tp4_grupo2;
 
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -16,8 +15,6 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
-
-import java.sql.SQLException;
 
 public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout1;

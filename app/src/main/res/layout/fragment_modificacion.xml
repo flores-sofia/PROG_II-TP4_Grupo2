@@ -9,21 +9,42 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        tools:ignore="UselessParent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="#E0E0E0"
+            android:padding="8dp"
+            android:layout_marginBottom="16dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/id"
+                android:textSize="16sp"
+                android:textColor="#808080"
+                android:layout_gravity="center_vertical"
+                android:paddingEnd="8dp"
+                tools:ignore="RtlSymmetry" />
 
             <EditText
                 android:id="@+id/editTextId"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="ID"
-                android:backgroundTint="#d3d3d3"
-                android:inputType="number" />
+                android:autofillHints=""
+                android:padding="8dp"
+                android:backgroundTint="#C8C8C8"
+                android:inputType="number"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                tools:ignore="LabelFor" />
 
             <Button
                 android:id="@+id/buttonBuscar"
@@ -31,46 +52,73 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:onClick="buscarArticulo"
-                android:text="BUSCAR" />
+                android:text="@string/buscar" />
         </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/nombre_producto"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:paddingBottom="4dp" />
 
         <EditText
             android:id="@+id/editTextNombreProducto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:inputType="text"
+            android:padding="8dp"
+            android:backgroundTint="#C8C8C8"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            tools:ignore="LabelFor" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/stock"
+            android:textSize="16sp"
+            android:textColor="#000000"
             android:layout_marginTop="16dp"
-            android:hint="NOMBRE PRODUCTO"
-            android:inputType="text" />
+            android:paddingBottom="4dp" />
 
         <EditText
             android:id="@+id/editTextStock"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:hint="STOCK"
-            android:inputType="number" />
+            android:autofillHints=""
+            android:inputType="number"
+            android:padding="8dp"
+            android:backgroundTint="#C8C8C8"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            tools:ignore="LabelFor" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="CATEGORÍA"
+            android:text="@string/categoria"
             android:textSize="16sp"
-            android:textColor="#808080" />
+            android:textColor="#000000"
+            android:layout_marginTop="16dp"
+            android:paddingBottom="4dp" />
 
         <Spinner
             android:id="@+id/spinnerCategoria"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp" />
+            android:backgroundTint="#C8C8C8" />
 
         <Button
             android:id="@+id/buttonModificar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="MODIFICAR"
+            android:text="@string/modificar"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="24dp" />
+            android:layout_marginTop="24dp"
+            android:padding="8dp"/>
     </LinearLayout>
 
 </FrameLayout>
