@@ -1,4 +1,4 @@
-package com.example.tp4_grupo2;
+package com.example.tp4_grupo2.Entidades;
 
 public class Categoria {
     private int id;

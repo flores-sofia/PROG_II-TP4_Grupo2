@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.tp4_grupo2.Entidades.Categoria;
+import com.example.tp4_grupo2.conexion.DataArticulo;
 import com.example.tp4_grupo2.conexion.DataCategorias;
 import com.example.tp4_grupo2.conexion.DataDB;
 
@@ -47,13 +49,13 @@ public class AltaFragment extends Fragment {
             }
 
             // Validar que el ID no exista en la base de datos
-            if (DataDB.existeArticulo(getContext(), Integer.parseInt(idArticulo))) {
+            if (DataArticulo.existeArticulo(getContext(), Integer.parseInt(idArticulo))) {
                 Toast.makeText(getContext(), "El ID ya existe en la base de datos", Toast.LENGTH_SHORT).show();
                 return; // Si el ID ya existe, no continuar
             }
 
             // Guardar el artículo en la base de datos
-            DataDB.guardarArticulo(getContext(), Integer.parseInt(idArticulo), nombre, Integer.parseInt(stock), idCategoria);
+            DataArticulo.guardarArticulo(getContext(), Integer.parseInt(idArticulo), nombre, Integer.parseInt(stock), idCategoria);
 
             // Limpiar los campos después de agregar
             editTextID.setText("");
