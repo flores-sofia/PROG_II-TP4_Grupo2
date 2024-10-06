@@ -34,6 +34,7 @@ public class ModificacionFragment extends Fragment {
     private EditText txtIdArticulo,txtNombreArticulo,txtStockArticulo,txtCategoriaArticulo;
     private Button btnBuscar;
     private Spinner spinnerCategoria;
+    private Button btnModificar;
 
 
     public ModificacionFragment() {
@@ -79,6 +80,9 @@ public class ModificacionFragment extends Fragment {
         btnBuscar= view.findViewById(R.id.buttonBuscar);
         spinnerCategoria=view.findViewById(R.id.spinnerCategoria);
 
+        btnModificar = view.findViewById(R.id.buttonModificar);
+        spinnerCategoria.setVisibility(View.GONE);
+
         DataArticulo dataArticulo=new DataArticulo(txtNombreArticulo,txtStockArticulo,spinnerCategoria,getContext());
 
 
@@ -90,14 +94,65 @@ public class ModificacionFragment extends Fragment {
                 int id=Integer.parseInt(idArticulo);
                 dataArticulo.obtenerArticulo(getContext(),id);
 
-
-                txtIdArticulo.setText("");
+                spinnerCategoria.setVisibility(View.VISIBLE);
+//                txtIdArticulo.setText("");
 
             }
+        });
+
+        btnModificar.setOnClickListener(v -> {
+
+            String idArticulo = txtIdArticulo.getText().toString();
+            String nombre = txtNombreArticulo.getText().toString();
+            String stock = txtStockArticulo.getText().toString();
+
+            // Obtener el objeto Categoria seleccionado
+            Categoria categoriaSeleccionada = (Categoria) spinnerCategoria.getSelectedItem();
+            int idCategoria = (categoriaSeleccionada != null) ? categoriaSeleccionada.getId() : -1;
+
+            if (validarDatos(nombre, stock, idCategoria)) {
+                dataArticulo.modificarArticulo(getContext(), Integer.parseInt(idArticulo),
+                        nombre, Integer.parseInt(stock), idCategoria);
+
+                txtStockArticulo.setText("");
+                txtNombreArticulo.setText("");
+                txtIdArticulo.setText("");
+                spinnerCategoria.setVisibility(View.GONE);
+            }
+
         });
 
         return view;
     }
 
+    private boolean validarDatos(String nombre, String stock, int idCategoria) {
 
+        // Validar Nombre
+        if (nombre.isEmpty() || contieneNumeros(nombre)) {
+            Toast.makeText(getContext(), "El nombre del producto no puede estar vacío y no debe contener números", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        // Validar Stock
+        if (stock.isEmpty() || !esNumero(stock) || Integer.parseInt(stock) <= 0) {
+            Toast.makeText(getContext(), "El stock debe ser un número entero positivo", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        // Si todas las validaciones pasan
+        return true;
+    }
+
+    private boolean esNumero(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    private boolean contieneNumeros(String str) {
+        return str.matches(".*\\d.*"); // Verifica si hay algún dígito en el string
+    }
 }

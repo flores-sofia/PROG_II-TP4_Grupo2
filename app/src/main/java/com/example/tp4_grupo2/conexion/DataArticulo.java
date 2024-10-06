@@ -89,6 +89,36 @@ public class DataArticulo {
         });
     }
 
+    public static void modificarArticulo(Context context, int id, String nombre, int stock, int idCategoria) {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.execute(() -> {
+            String sql = "UPDATE articulo SET nombre = ?, stock = ?, idCategoria = ? WHERE id = ?";
+            try (Connection connection = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
+                 PreparedStatement statement = connection.prepareStatement(sql)) {
+
+                statement.setString(1, nombre);
+                statement.setInt(2, stock);
+                statement.setInt(3, idCategoria);
+                statement.setInt(4, id);
+
+                int rowsUpdated = statement.executeUpdate();
+
+                // Actualiza la UI en el hilo principal
+                new android.os.Handler(android.os.Looper.getMainLooper()).post(() -> {
+                    if (rowsUpdated > 0) {
+                        Toast.makeText(context, "Artículo modificado correctamente", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(context, "Error al modificar el artículo", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+            } catch (SQLException e) {
+
+                Toast.makeText(context, "Algo malio sal jeje", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     public static boolean existeArticulo(Context context, int id) {
         boolean existe = false;
         String sql = "SELECT COUNT(*) FROM articulo WHERE id = ?";
