@@ -10,7 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/botonActualizar"
-        tools:ignore="SpeakableTextPresentCheck">
+        tools:ignore="SpeakableTextPresentCheck"
+        android:padding="16dp"
+        android:background="#f0f0f0"> <!-- Fondo del ScrollView -->
 
         <LinearLayout
             android:id="@+id/contenedorArticulos"
@@ -18,7 +20,10 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="16dp" />
+            android:padding="16dp"
+            android:background="#ffffff"
+            android:elevation="4dp"
+        />
     </ScrollView>
 
     <Button
@@ -26,7 +31,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Actualizar"
+        android:textSize="18sp"
+        android:textColor="#ffffff"
+        android:backgroundTint="#6200EE"
+        android:padding="10dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="16dp" />
+
 </RelativeLayout>

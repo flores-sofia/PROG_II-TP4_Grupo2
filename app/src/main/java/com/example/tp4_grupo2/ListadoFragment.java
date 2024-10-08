@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.tp4_grupo2.Entidades.Articulo;
@@ -64,6 +65,7 @@ public class ListadoFragment extends Fragment {
         contenedorArticulos.removeAllViews(); // Limpiar el contenedor antes de agregar los artículos
         DataArticulo dataArticulo = new DataArticulo();
         dataArticulo.obtenerArticulosParaListado(new DataArticulo.Callback() {
+
             @Override
             public void onSuccess(ArrayList<Articulo> listaArticulos) {
                 for (Articulo articulo : listaArticulos) {
@@ -71,9 +73,19 @@ public class ListadoFragment extends Fragment {
 
                     TextView textView = new TextView(getContext());
                     textView.setText("Artículo: " + articulo.getNombre() + "\nCategoría: " + nombreCategoria + "\nStock: " + articulo.getStock());
+
                     textView.setTextSize(18);
-                    textView.setPadding(0, 20, 0, 20);
+                    textView.setPadding(20, 20, 20, 20); // Ajustar padding
                     textView.setGravity(View.TEXT_ALIGNMENT_CENTER);
+                    textView.setBackgroundColor(ContextCompat.getColor(getContext(), android.R.color.darker_gray));
+                    textView.setTextColor(ContextCompat.getColor(getContext(), android.R.color.black));
+
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                    );
+                    params.setMargins(10, 10, 10, 10);
+                    textView.setLayoutParams(params);
 
                     contenedorArticulos.addView(textView);
                 }
