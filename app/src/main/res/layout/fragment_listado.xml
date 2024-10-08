@@ -1,15 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ListadoFragment">
 
-    <LinearLayout
-        android:id="@+id/contenedorArticulos"
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="16dp" />
-</FrameLayout>
+        android:layout_above="@+id/botonActualizar"
+        tools:ignore="SpeakableTextPresentCheck">
+
+        <LinearLayout
+            android:id="@+id/contenedorArticulos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="16dp" />
+    </ScrollView>
+
+    <Button
+        android:id="@+id/botonActualizar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Actualizar"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp" />
+</RelativeLayout>
