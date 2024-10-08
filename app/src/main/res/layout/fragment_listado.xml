@@ -12,7 +12,7 @@
         android:layout_above="@+id/botonActualizar"
         tools:ignore="SpeakableTextPresentCheck"
         android:padding="16dp"
-        android:background="#f0f0f0"> <!-- Fondo del ScrollView -->
+        android:background="#f0f0f0">
 
         <LinearLayout
             android:id="@+id/contenedorArticulos"
