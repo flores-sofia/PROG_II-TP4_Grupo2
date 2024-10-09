@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import com.example.tp4_grupo2.Entidades.Articulo;
 import com.example.tp4_grupo2.Entidades.Categoria;
 import com.example.tp4_grupo2.conexion.DataArticulo;
+import com.example.tp4_grupo2.conexion.DataCategorias;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,9 +33,10 @@ public class ListadoFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_listado, container, false);
+        categorias = cargarCategorias(); // Método que obtiene las categorías de alguna fuente
         contenedorArticulos = view.findViewById(R.id.contenedorArticulos);
         botonActualizar = view.findViewById(R.id.botonActualizar); // Inicializar el botón
-        categorias = cargarCategorias(); // Método que obtiene las categorías de alguna fuente
+
 
         // Cargar la lista de artículos al iniciar
         obtenerListaArticulosDesdeDB();
@@ -45,16 +47,27 @@ public class ListadoFragment extends Fragment {
         return view;
     }
 
-    // Método para cargar las categorías en un HashMap (puede ser de la base de datos o hardcodeado)
     private Map<Integer, Categoria> cargarCategorias() {
         Map<Integer, Categoria> mapCategorias = new HashMap<>();
-        mapCategorias.put(1, new Categoria(1, "Electrónica"));
-        mapCategorias.put(2, new Categoria(2, "Hogar"));
-        mapCategorias.put(3, new Categoria(3, "Juguetes"));
-        mapCategorias.put(4, new Categoria(4, "Alimentos"));
-        mapCategorias.put(5, new Categoria(5, "Libros"));
+        DataCategorias dataCategorias = new DataCategorias();
+        dataCategorias.obtenerCategoriasParaListado(new DataCategorias.Callback() {
+
+            @Override
+            public void onSuccess(ArrayList<Categoria> listaCategorias) {
+                for (Categoria cat : listaCategorias) {
+                    mapCategorias.put(cat.getId(), cat);
+                }
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                Toast.makeText(getContext(), "Error al obtener los artículos: " + errorMessage, Toast.LENGTH_SHORT).show();
+            }
+        });
         return mapCategorias;
     }
+
+
 
     // Método para obtener el nombre de la categoría
     private String obtenerNombreCategoria(int idCategoria) {

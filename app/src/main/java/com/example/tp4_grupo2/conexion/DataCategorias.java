@@ -3,6 +3,7 @@ package com.example.tp4_grupo2.conexion;
 import android.content.Context;
 import android.widget.Spinner;
 
+import com.example.tp4_grupo2.Entidades.Articulo;
 import com.example.tp4_grupo2.Entidades.Categoria;
 import com.example.tp4_grupo2.adapter.CategoriaAdapter;
 
@@ -19,12 +20,20 @@ public class DataCategorias{
     private Context context;
 
     private static String result;
-    private static ArrayList<Categoria> listaCategorias = new ArrayList<Categoria>();
+    private ArrayList<Categoria> listaCategorias = new ArrayList<Categoria>();
+
+    public DataCategorias(){
+
+    }
 
     public DataCategorias(Spinner sp, Context ct)
     {
         spinnerCategoria = sp;
         context = ct;
+    }
+
+    public ArrayList<Categoria> getListaCategorias() {
+        return listaCategorias;
     }
 
     public void fetchData() {
@@ -57,6 +66,8 @@ public class DataCategorias{
         });
     }
 
+
+
     public void cargarDataYSeleccionar(int posicionSeleccion) {
         ExecutorService executor = Executors.newSingleThreadExecutor();
         executor.execute(() -> {
@@ -87,4 +98,49 @@ public class DataCategorias{
             });
         });
     }
+
+    public void setListaCategorias(ArrayList<Categoria> listaCategorias) {
+        this.listaCategorias = listaCategorias;
+    }
+
+    public void obtenerCategoriasParaListado(DataCategorias.Callback callback) {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.execute(() -> {
+            ArrayList<Categoria> listaCategorias = new ArrayList<>();
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
+                Statement st = con.createStatement();
+                ResultSet rs = st.executeQuery("SELECT * FROM categoria");
+
+                while (rs.next()) {
+                    Categoria categoria = new Categoria();
+                    categoria.setId(rs.getInt("id"));
+                    categoria.setDescripcion(rs.getString("descripcion"));
+                    listaCategorias.add(categoria);
+                }
+                rs.close();
+                st.close();
+                con.close();
+
+                new android.os.Handler(android.os.Looper.getMainLooper()).post(() -> {
+                    callback.onSuccess(listaCategorias);
+                });
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                new android.os.Handler(android.os.Looper.getMainLooper()).post(() -> {
+                    callback.onError(e.getMessage());
+                });
+            }
+        });
+    }
+
+    public interface Callback {
+        void onSuccess(ArrayList<Categoria> listaCategoria);
+
+        void onError(String errorMessage);
+    }
+
+
 }
