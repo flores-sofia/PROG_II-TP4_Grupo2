@@ -50,7 +50,9 @@ public class ListadoFragment extends Fragment {
         Map<Integer, Categoria> mapCategorias = new HashMap<>();
         mapCategorias.put(1, new Categoria(1, "Electrónica"));
         mapCategorias.put(2, new Categoria(2, "Hogar"));
-        mapCategorias.put(3, new Categoria(3, "Deportes"));
+        mapCategorias.put(3, new Categoria(3, "Juguetes"));
+        mapCategorias.put(4, new Categoria(4, "Alimentos"));
+        mapCategorias.put(5, new Categoria(5, "Libros"));
         return mapCategorias;
     }
 
@@ -72,12 +74,12 @@ public class ListadoFragment extends Fragment {
                     String nombreCategoria = obtenerNombreCategoria(articulo.getIdCategoria());
 
                     TextView textView = new TextView(getContext());
-                    textView.setText("Artículo: " + articulo.getNombre() + "\nCategoría: " + nombreCategoria + "\nStock: " + articulo.getStock());
+                    textView.setText("ID: " + articulo.getId() + "\nArtículo: " + articulo.getNombre() + "\nCategoría: " + nombreCategoria + "\nStock: " + articulo.getStock());
 
                     textView.setTextSize(18);
                     textView.setPadding(20, 20, 20, 20); // Ajustar padding
                     textView.setGravity(View.TEXT_ALIGNMENT_CENTER);
-                    textView.setBackgroundColor(ContextCompat.getColor(getContext(), android.R.color.darker_gray));
+                    textView.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.grey));
                     textView.setTextColor(ContextCompat.getColor(getContext(), android.R.color.black));
 
                     LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
