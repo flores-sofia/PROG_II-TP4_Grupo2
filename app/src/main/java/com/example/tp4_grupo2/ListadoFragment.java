@@ -33,7 +33,7 @@ public class ListadoFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_listado, container, false);
-        categorias = cargarCategorias(); // Método que obtiene las categorías de alguna fuente
+        categorias = cargarCategorias();
         contenedorArticulos = view.findViewById(R.id.contenedorArticulos);
         botonActualizar = view.findViewById(R.id.botonActualizar); // Inicializar el botón
 
